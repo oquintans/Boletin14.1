@@ -23,14 +23,19 @@ public class ConversorTemperaturas {
 
     public float centígradosAReamur() {
 
-        float cent, ream;
-        try{
-        cent = Float.parseFloat(JOptionPane.showInputDialog("Introducir Temperatura ºC"));
-        ream = 4.0f / 5.0f * cent;
-        }catch(TemperaturaErradaExcepcion ex){
-            JOptionPane.showMessageDialog(null,"Temperatura debe ser mayor de 80ºC");
+        float cent, ream = 0;
+        try {
+            cent = Float.parseFloat(JOptionPane.showInputDialog("Introducir Temperatura ºC"));
+            if (cent < 80) {
+                throw new TemperaturaErradaExcepcion();
+            }
+            ream = 4.0f / 5.0f * cent;
+
+        } catch (TemperaturaErradaExcepcion ex) {
+            JOptionPane.showMessageDialog(null, "Temperatura debe ser mayor de 80ºC");
         }
         return ream;
+
     }
 
 }
